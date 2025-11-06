@@ -1,0 +1,289 @@
+<!-- update -->
+<!--
+File: trang-web-lop-12A1.html
+Mô tả: Trang web lớp 12A1 (HTML + CSS), nhiều màu sắc, responsive, copy & paste vào file .html rồi mở trình duyệt để xem.
+-->
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>12A1 - Cái Lớp Đáng Iu</title>
+  <meta name="description" content="Trang chính thức của lớp 12A1 - Trường THPT Trần Quốc Toản">
+  <style>
+    :root{
+      --bg:#0f172a; /* deep navy */
+      --card-bg: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.06);
+      --accent1: #ff7ab6; /* pink */
+      --accent2: #6ad3ff; /* light blue */
+      --accent3: #ffd36a; /* yellow */
+      --text: #e6eef8;
+      --muted: #b9c6d8;
+      --glass-border: rgba(255,255,255,0.08);
+      --radius: 14px;
+      --max-width: 1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg, #071024 0%, #0b1326 50%, #071024 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px 18px;
+      display:flex;
+      justify-content:center;
+    }
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+    }
+    header{
+      display:flex;
+      gap:20px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:22px;
+    }
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .logo{
+      width:72px;height:72px;border-radius:16px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#041226;font-size:22px;box-shadow:0 6px 18px rgba(10,12,20,0.6);
+    }
+    .brand h1{margin:0;font-size:20px}
+    .brand p{margin:0;color:var(--muted);font-size:13px}
+    nav{display:flex;gap:10px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600}
+    nav a:hover{color:var(--text);background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));}
+
+    main{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    @media (max-width:900px){main{grid-template-columns:1fr} .sidebar{order:2}}
+
+    .hero{
+      background:linear-gradient(135deg, rgba(255,122,182,0.08), rgba(106,211,255,0.05));
+      padding:20px;border-radius:var(--radius);border:1px solid var(--glass-border);
+      display:flex;gap:18px;align-items:center;flex-wrap:wrap;
+    }
+    .hero .title{flex:1}
+    .hero h2{margin:0;font-size:22px}
+    .hero p{margin:6px 0 0;color:var(--muted)}
+    .cta-row{display:flex;gap:10px;margin-top:12px}
+    .btn{padding:10px 14px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#041226}
+    .btn-ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.04)}
+
+    .card{background:var(--card-bg);padding:14px;border-radius:12px;border:1px solid var(--glass-border)}
+    .section{margin-top:18px}
+
+    /* Students grid */
+    .students{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;
+    }
+    .student{display:flex;gap:10px;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);}
+    .avatar{width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700}
+    .avatar.pink{background:linear-gradient(135deg,var(--accent1),#ffb6db);color:#041226}
+    .avatar.blue{background:linear-gradient(135deg,var(--accent2),#8de4ff);color:#041226}
+    .avatar.yellow{background:linear-gradient(135deg,var(--accent3),#ffe6a8);color:#041226}
+    .student .name{font-weight:700}
+    .student .meta{font-size:12px;color:var(--muted)}
+
+    /* Sidebar */
+    .sidebar{display:flex;flex-direction:column;gap:12px}
+    .info-list{display:flex;flex-direction:column;gap:8px}
+    .info-item{display:flex;justify-content:space-between;padding:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent)}
+
+    /* Timetable */
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:8px;text-align:left;border-bottom:1px dashed rgba(255,255,255,0.03)}
+    th{font-size:13px;color:var(--muted)}
+
+    /* Events */
+    .events{display:flex;flex-direction:column;gap:8px}
+    .event{padding:10px;border-radius:10px;border:1px dashed rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center}
+
+    footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* small touches */
+    .tag{padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px}
+    .tag.pink{background:linear-gradient(90deg,var(--accent1),#ff9fcf);color:#041226}
+    .tag.blue{background:linear-gradient(90deg,var(--accent2),#9fe9ff);color:#041226}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">12A1</div>
+        <div>
+          <h1>Lớp 12A1 - Trường THPT Trần Quốc Toản</h1>
+          <p>Niên khóa 2023 - 2026· Gắn kết - Sáng tạo - Vui vẻ</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">Giới thiệu</a>
+        <a href="#students">Học sinh</a>
+        <a href="#timetable">Thời khóa biểu</a>
+        <a href="#events">Sự kiện</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <div class="hero card">
+          <div style="flex:0 0 110px;">
+            <div style="width:96px;height:96px;border-radius:14px;background:linear-gradient(135deg,var(--accent3),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#041226">A1</div>
+          </div>
+          <div class="title">
+            <h2>Chào mừng đến với trang chính thức của lớp 12A1 🎉</h2>
+            <p>Trang này gồm: thông tin lớp, danh sách học sinh, thời khóa biểu, sự kiện và liên hệ. Dành cho thầy cô và các thành viên lớp.</p>
+
+            <div class="cta-row">
+              <button class="btn btn-primary">Tạo bài viết mới</button>
+              <button class="btn btn-ghost">Liên hệ GVCN</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="about" class="section card">
+          <h3>Giới thiệu lớp</h3>
+          <p style="color:var(--muted)">Lớp 12A1 gồm 40 học sinh, học khối 12 (Trường THPT Trần Quốc Toản). GVCN: Lê Duy Biên. Mục tiêu: Thi Tốt nghiệp và xét tuyển đại học.</p>
+          <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+            <div class="tag pink">Kết nối</div>
+            <div class="tag blue">Sáng tạo</div>
+            <div class="tag" style="background:linear-gradient(90deg,var(--accent3),#ffe0a5);color:#041226">Nhiệt huyết</div>
+          </div>
+        </div>
+
+        <div id="students" class="section card">
+          <h3>Danh sách học sinh (ví dụ)</h3>
+          <div class="students">
+            <!-- Sample students: thay thế bằng tên thật khi cần -->
+            <div class="student"><div class="avatar pink">NLVL</div><div><div class="name">Nguyễn Lương Việt Lâm</div><div class="meta">Lớp trưởng</div></div></div>
+            <div class="student"><div class="avatar blue">ĐHV</div><div><div class="name">Đặng Huyền Vy</div><div class="meta">Phó lớp</div></div></div>
+            <div class="student"><div class="avatar yellow">HT</div><div><div class="name">Hà Tú</div><div class="meta">Học sinh</div></div></div>
+            <div class="student"><div class="avatar pink">GL</div><div><div class="name">Gia Long</div><div class="meta">Học sinh</div></div></div>
+            <div class="team leader 1"><div class="avatar blue">LT</div><div><div class="name">Lâm Tùng</div><div class="meta">tổ trưởng tổ 1</div></div></div>
+            <div class="team leader 2"><div class="avatar pink">TM</div><div><div class="name">Thiện Minh</div><div class="meta">tổ trưởng tổ 1</div></div></div>
+            <div class="team leader 3"><div class="avatar pink">KH</div><div><div class="name">Khánh Hân</div><div class="meta">Tổ trưởng tổ 3</div></div></div>
+            <div class="team leader 4"><div class="avatar pink">HP</div><div><div class="name">Hoài Phương</div><div class="meta">tổ trưởng tổ 4</div></div></div>
+            <div class="student"><div class="avatar yellow">TN</div><div><div class="name">Thảo Ngọc</div><div class="meta">Học sinh</div></div></div>
+            <div class="student"><div class="avatar pink">BT</div><div><div class="name">Bảo Trung</div><div class="meta">Học sinh</div></div></div>
+            <div class="student"><div class="avatar blue">VT</div><div><div class="name">Văn Trí</div><div class="meta">Học sinh</div></div></div>
+            <div class="student"><div class="avatar yellow">TK</div><div><div class="name">Tuấn Kiệt</div><div class="meta">Học sinh</div></div></div>
+            <div class="student"><div class="avatar pink">PU</div><div><div class="name">Phương Uyên</div><div class="meta">Học sinh</div></div></div>
+            <div class="student"><div class="avatar pink">QV</div><div><div class="name">Quốc Việt</div><div class="meta">Học sinh</div></div></div>
+          </div>
+          <p style="margin-top:10px;color:var(--muted)">(Thêm/bớt tên trong mã HTML hoặc dùng form để cập nhật động nếu muốn nâng cấp.)</p>
+        </div>
+
+        <div id="timetable" class="section card">
+          <h3>Thời khóa biểu mẫu</h3>
+          <table>
+            <thead><tr><th>Thứ</th><th>Môn 1</th><th>Môn 2</th><th>Môn 3</th></td>Môn 4</th></tr</thead>
+            <tbody>
+              <tr><td>Thứ 2</td><td>Toán</td><td>Vật lý</td><td>Tiếng Anh</td></td>Hoá học</td></tr>
+              <tr><td>Thứ 3</td><td>Hóa</td><td>Toán</td><td>GDCD</td></td>Lịch sử</td></tr>
+              <tr><td>Thứ 4</td><td>Vật lý</td><td>Ngữ văn</td><td>Toán</td></td>Sinh học</td></tr>
+              <tr><td>Thứ 5</td><td>Sinh</td><td>Anh</td><td>Thể dục</td></td>Tin học</td></tr>
+              <tr><td>Thứ 6</td><td>Toán</td><td>Vật lí</td></td>Hoạt động tập thể</td><td>Hóa</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- 📜 BẢNG VINH DANH -->
+<section id="vinh-danh" style="padding: 30px; background: #f9f9ff; border-radius: 20px; margin: 30px auto; max-width: 800px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+  <h2 style="text-align: center; color: #333; font-size: 28px; margin-bottom: 20px;">🏆 BẢNG VINH DANH 12A1 🏆</h2>
+
+  <div style="display: flex; flex-direction: column; gap: 15px;">
+    <div style="background: white; border-radius: 15px; padding: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+      <h3>⚽ Vua phá lưới giải bóng đá cấp trường</h3>
+      <p>🥇 Hồ Quốc Việt(Quốc Kang) – Ghi 4 bàn thắng, mang vinh quang về cho lớp!</p>
+    </div>
+
+    <div style="background: white; border-radius: 15px; padding: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+      <h3>😎 Người đẹp trai nhất lớp</h3>
+      <p>💫 Lê Văn Quyền – Không chỉ đẹp trai mà còn đời lớp này!</p>
+    </div>
+
+    <div style="background: white; border-radius: 15px; padding: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+      <h3>🔥 Người có nhiều drama nhất lớp</h3>
+      <p>😂 Hoàng Thị Thảo Ngọc – Drama nhiều nhưng ai cũng quý!</p>
+      <!-- 💬 GÓP Ý ẨN DANH -->
+<section id="gop-y" style="padding: 30px; background: #fff8f0; border-radius: 20px; margin: 30px auto; max-width: 700px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+  <h2 style="text-align: center; color: #444;">💌 GÓP Ý ẨN DANH</h2>
+  <p style="text-align: center; color: #777;">Hãy gửi lời nhắn, góp ý hoặc bí mật muốn nói với lớp nhé 😉</p>
+
+  <form action="https://formspree.io/f/xwpezjvz" method="POST" style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+    <textarea name="message" rows="5" placeholder="Viết lời nhắn của bạn vào đây..." required
+      style="padding: 10px; border-radius: 10px; border: 1px solid #ccc; resize: none;"></textarea>
+    <button type="submit" style="padding: 10px; border: none; border-radius: 10px; background: #ffb347; color: white; font-weight: bold; cursor: pointer;">
+      Gửi ẩn danh 💌
+    </button>
+  </form>
+</section>
+
+    </div>
+  </div>
+</section>
+
+
+        <div id="events" class="section card">
+          <h3>Sự kiện sắp tới</h3>
+          <div class="events">
+            <div class="event"><div><strong>Họp phụ huynh</strong><div style="font-size:12px;color:var(--muted)">Ngày 30/05/2026 · 18:30</div></div><div class="tag blue">Quan trọng</div></div>
+            <div class="event"><div><strong>Thi giữa kì Toán</strong><div style="font-size:12px;color:var(--muted)">Ngày 10/11/2025 · Phòng A1</div></div><div class="tag">Thi</div></div>
+            <div class="event"><div><strong>Du lịch cuối năm</strong><div style="font-size:12px;color:var(--muted)">Lập kế hoạch - Thảo luận</div></div><div class="tag pink">Team</div></div>
+          </div>
+        </div>
+
+      </section>
+
+      <aside class="sidebar">
+        <div class="card">
+          <h4>Thông tin GVCN</h4>
+          <div class="info-list">
+            <div class="info-item"><div>Giáo viên chủ nhiệm</div><div>Lê Duy Biên</div></div>
+            <div class="info-item"><div>Liên hệ</div><div>0845555545</div></div>
+            <div class="info-item"><div>SL học sinh</div><div>40</div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>Bài viết nổi bật</h4>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a href="#" style="text-decoration:none;color:var(--text)"><strong> Ôn thi HKI</strong><div style="font-size:12px;color:var(--muted)">10/10/2025</div></a>
+            <a href="#" style="text-decoration:none;color:var(--text)"><strong>Lịch thi giữa kì tháng 11</strong><div style="font-size:12px;color:var(--muted)">05/11/2025</div></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>Liên kết nhanh</h4>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+            <a class="btn btn-ghost" href="#">Google Classroom</a>
+            <a class="btn btn-ghost" href="#">Nhóm Zalo</a>
+            <a class="btn btn-ghost" href="#">Drive chung</a>
+          </div>
+        </div>
+
+      </aside>
+    </main>
+
+    <footer>
+      © Lớp 12A1 — Thiết kế mẫu. Chỉnh sửa tên, sự kiện và danh sách học sinh trong mã HTML để phù hợp.
+    </footer>
+  </div>
+</body>
+</html>
+<!-- 🎶 NHẠC NỀN -->
+<audio id="music" autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_501b9c1921.mp3" type="audio/mpeg">
+</audio>
+
